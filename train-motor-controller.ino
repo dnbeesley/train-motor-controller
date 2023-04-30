@@ -108,7 +108,7 @@ void setState(int available)
     analogWrite(B_PWM, state[2]);
 #ifdef _DEBUG
     Serial.print("Motor B moving backward with speed: ");
-    Serial.println(state[1]);
+    Serial.println(state[2]);
 #endif
   }
 }
