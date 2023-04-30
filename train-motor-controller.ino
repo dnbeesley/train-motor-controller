@@ -63,7 +63,7 @@ void setState(int available)
   }
 
 #ifdef _DEBUG
-  for(i = 0; i < 3; i++)
+  for (i = 0; i < 3; i++)
   {
     Serial.print(i);
     Serial.print(" = ");
@@ -98,6 +98,15 @@ void setState(int available)
     Serial.println(state[1]);
 #endif
   }
+  else
+  {
+    digitalWrite(A_BRAKE, LOW);
+    digitalWrite(A_DIRECTION, LOW);
+    analogWrite(A_PWM, 0);
+#ifdef _DEBUG
+    Serial.println("Motor A stopped");
+#endif
+  }
 
   if ((state[0] & 0xC) == 0xC)
   {
@@ -124,6 +133,15 @@ void setState(int available)
 #ifdef _DEBUG
     Serial.print("Motor B moving backward with speed: ");
     Serial.println(state[2]);
+#endif
+  }
+  else
+  {
+    digitalWrite(B_BRAKE, LOW);
+    digitalWrite(B_DIRECTION, LOW);
+    analogWrite(B_PWM, 0);
+#ifdef _DEBUG
+    Serial.println("Motor B stopped");
 #endif
   }
 }
