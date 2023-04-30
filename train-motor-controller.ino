@@ -37,6 +37,7 @@ void loop()
 void setState(int available)
 {
   uint8_t state[3] = {0, 0, 0};
+  uint8_t i;
 
 #ifdef _DEBUG
   Serial.print("Received: ");
@@ -44,7 +45,7 @@ void setState(int available)
   Serial.println(" bytes");
 #endif
 
-  for (int i = 0; i < 3; i++)
+  for (i = 0; i < 3; i++)
   {
     if (i < available)
     {
@@ -55,6 +56,20 @@ void setState(int available)
       state[i] = 0;
     }
   }
+
+  while (i < available)
+  {
+    Wire.read();
+  }
+
+#ifdef _DEBUG
+  for(i = 0; i < 3; i++)
+  {
+    Serial.print(i);
+    Serial.print(" = ");
+    Serial.println(state[i]);
+  }
+#endif
 
   if ((state[0] & 0x3) == 0x3)
   {
