@@ -26,7 +26,7 @@ void getCurrent()
 {
   uint8_t state[2];
   state[0] = analogRead(A_CURRENT_SENSING) / 4;
-  state[1] = analogRead(A_CURRENT_SENSING) / 4;
+  state[1] = analogRead(B_CURRENT_SENSING) / 4;
   Wire.write(state, 2);
 }
 
